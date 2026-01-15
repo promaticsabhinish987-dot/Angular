@@ -1,6 +1,6 @@
 # Angular
 
-```javascript
+```scss
 Angular Core
 ├── Modules & Components
 │   ├── NgModule
