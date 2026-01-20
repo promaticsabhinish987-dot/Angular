@@ -40,5 +40,8 @@ Angular Core
     ├── Dependency Injection
     ├── RxJS Observables
     └── Change Detection
+    ├── Promise & Observables
+    └── Change Detection
+
 
 ```
