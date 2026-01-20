@@ -601,4 +601,129 @@ Set-Cookie: accessToken=xyz; HttpOnly; Secure
 
 ---
 
+Below are **clean, correct logout implementations** for **both authentication approaches**, written in a **production-ready** way.
+
+---
+
+# 🔐 Logout Code (Angular)
+
+## 🟢 1. Cookie-Based Authentication (Recommended)
+
+### 🔹 How Logout Works
+
+* Frontend calls `/logout`
+* Backend **clears HttpOnly cookies**
+* Session/token is invalidated
+* User is logged out securely
+
+---
+
+### ✅ Angular Logout Code
+
+```ts
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  private baseUrl = `${environment.apiUrl}/auth`;
+
+  constructor(private http: HttpClient) {}
+
+  logout() {
+    return this.http.post(
+      `${this.baseUrl}/logout`,
+      {},
+      { withCredentials: true }
+    );
+  }
+}
+```
+
+---
+
+### ✅ Backend Logout (Node.js / Express)
+
+```js
+app.post('/auth/logout', (req, res) => {
+  res.clearCookie('accessToken', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+  });
+
+  res.clearCookie('refreshToken', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+  });
+
+  res.status(200).json({ message: 'Logged out successfully' });
+});
+```
+
+---
+
+### 🔐 Why This Is Secure
+
+✔ Tokens removed server-side
+✔ No JS access to cookies
+✔ Prevents reuse of stolen tokens
+
+---
+
+## 🟡 2. LocalStorage-Based Authentication
+
+### 🔹 How Logout Works
+
+* Remove token from browser storage
+* Redirect user to login page
+
+---
+
+### ✅ Angular Logout Code
+
+```ts
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
+}
+```
+
+---
+
+### ❌ Why This Is Less Secure
+
+* Token already exposed to JS
+* Cannot invalidate token server-side
+* Token valid until expiration
+
+---
+
+## 🔄 Logout + Redirect Example
+
+```ts
+this.authService.logout().subscribe(() => {
+  this.router.navigate(['/login']);
+});
+```
+
+---
+
+## 🧠 Key Differences (Logout)
+
+| Feature             | Cookie-Based | LocalStorage |
+| ------------------- | ------------ | ------------ |
+| Server Invalidation | ✅ Yes        | ❌ No         |
+| Token Exposure      | ❌ None       | ✅ Exists     |
+| Recommended         | ✅ Yes        | ❌ No         |
+
+---
+
+## 🎯 One-Line Interview Answer
+
+> **Cookie-based logout is more secure because the server clears the authentication cookies, while localStorage logout only removes the token from the browser.**
+
+---
+
 
