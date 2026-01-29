@@ -3,3 +3,23 @@
 3. one module where we import all our data. 
 4. Define it in shared module.
 
+```ts
+@NgModule({
+  declarations: [
+    RemoveCenterCodePipe,
+    OnlyNumberDirective,
+    AppButtonComponent
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    RemoveCenterCodePipe,
+    OnlyNumberDirective,
+    AppButtonComponent,
+    CommonModule
+  ]
+})
+export class SharedModule {}
+
+```
