@@ -5,8 +5,9 @@
 5. we have multiple environments, where we define the url for image and url for data.
 6. readit /stackoverflow
 7. miro for lld
-8. show detail of product on top and select from below list , select id on click and scrol to top, and selet a product with that id, and display at above.
-9. We can create a pipe for different status
+8. create template for svg and define svgs at bottom
+9. show detail of product on top and select from below list , select id on click and scrol to top, and selet a product with that id, and display at above.
+10. We can create a pipe for different status
 
 ```
 
