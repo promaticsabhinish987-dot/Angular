@@ -110,9 +110,52 @@ export class StatusClassPipe implements PipeTransform {
 
 ```
 
+11. Implemented cache for UI calls
 
 
+```ts
 
+@Injectable({ providedIn: 'root' })
+export class AppCacheService {
+
+  private store = new Map<string, Observable<any>>();
+
+  get<T>(key: string, fetchFn: () => Observable<T>): Observable<T> {
+
+    if (this.store.has(key)) {
+      return this.store.get(key)! as Observable<T>;
+    }
+
+    const cached$ = fetchFn().pipe(
+      shareReplay(1)
+    );
+
+    this.store.set(key, cached$);
+    return cached$;
+  }
+
+  clear(key: string) {
+    this.store.delete(key);
+  }
+
+  clearAll() {
+    this.store.clear();
+  }
+}
+
+```
+
+```html
+getData(): Observable<any> {
+  const API_URL = `${this.SERVER_URL}data`;
+
+  return this.cache.get(
+    'DATA',
+    () => this.http.get<any>(API_URL)
+  );
+}
+
+```
 
 
 
