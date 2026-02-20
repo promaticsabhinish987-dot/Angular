@@ -82,6 +82,21 @@ constructor(private userService: UserService) {}
 </ul>
 
 
+or
+
+<div>
+   <h2>Display Users</h2>
+   @if(users){
+      @for(user of users;track user.id){
+         <div>
+         <p>{{user.name}}</p>
+      </div>
+      } @empty{
+         <h1>No user</h1>
+      }
+   }
+</div>
+
 ```
 
 
