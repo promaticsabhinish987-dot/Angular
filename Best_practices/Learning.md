@@ -2,7 +2,7 @@
 2. seed.js is used to create dumy data on database.
 3. for common feature , functionality create service, for UI update use, directive , for data transformation in html use pipe
 4. :host{} points to the current component in css.
-5. cache busting 
+5. cache busting "outputHashing": "all"
 6. for image we display dummy image with function
 7. currency can be captured from environment.
 8. we have multiple environments, where we define the url for image and url for data.
