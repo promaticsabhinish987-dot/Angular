@@ -1,14 +1,16 @@
 1. we does not create route for admin.  register , we create it manually in database.
 2. seed.js is used to create dumy data on database.
-3. for image we display dummy image with function
-4. currency can be captured from environment.
-5. we have multiple environments, where we define the url for image and url for data.
-6. readit /stackoverflow
-7. miro for lld
-8. create template for svg and define svgs at bottom
-9. Suppose we have a component where we are using a sidebar , then we can define its closeref logic in both the component , in the component and the component who is using this component, and based on closing logic we can do api call and more.
-10. show detail of product on top and select from below list , select id on click and scrol to top, and selet a product with that id, and display at above.
-11. We can create a pipe for different status
+3. for common feature , functionality create service, for UI update use, directive , for data transformation in html use pipe
+4. :host{} points to the current component in css.
+5. for image we display dummy image with function
+6. currency can be captured from environment.
+7. we have multiple environments, where we define the url for image and url for data.
+8. readit /stackoverflow
+9. miro for lld
+10. create template for svg and define svgs at bottom
+11. Suppose we have a component where we are using a sidebar , then we can define its closeref logic in both the component , in the component and the component who is using this component, and based on closing logic we can do api call and more.
+12. show detail of product on top and select from below list , select id on click and scrol to top, and selet a product with that id, and display at above.
+13. We can create a pipe for different status
 
 ```
 
